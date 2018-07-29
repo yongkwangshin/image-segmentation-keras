@@ -20,18 +20,19 @@ def imageSegmentationGenerator( images_path , segs_path ,  n_classes ):
 	assert len( images ) == len(segmentations)
 
 	for im_fn , seg_fn in zip(images,segmentations):
-		assert(  im_fn.split('/')[-1] ==  seg_fn.split('/')[-1] )
+		assert(  im_fn.split('/')[-1].split('.')[0] ==  seg_fn.split('/')[-1].split('.')[0] )
 
 		img = cv2.imread( im_fn )
 		seg = cv2.imread( seg_fn )
-		print np.unique( seg )
+		#print np.unique( seg )
 
 		seg_img = np.zeros_like( seg )
 
 		for c in range(n_classes):
-			seg_img[:,:,0] += ( (seg[:,:,0] == c )*( colors[c][0] )).astype('uint8')
-			seg_img[:,:,1] += ((seg[:,:,0] == c )*( colors[c][1] )).astype('uint8')
-			seg_img[:,:,2] += ((seg[:,:,0] == c )*( colors[c][2] )).astype('uint8')
+			print np.unique( colors[0][0] )
+			seg_img[:,:,0] += ( (seg[:,:,0] == 128 )*( colors[c][0] )).astype('uint8')
+			seg_img[:,:,1] += ((seg[:,:,0] == 128 )*( colors[c][1] )).astype('uint8')
+			seg_img[:,:,2] += ((seg[:,:,0] == 128 )*( colors[c][2] )).astype('uint8')
 
 		cv2.imshow("img" , img )
 		cv2.imshow("seg_img" , seg_img )
