@@ -50,7 +50,7 @@ modelFns = { 'vgg_segnet':Models.VGGSegnet.VGGSegnet , 'vgg_unet':Models.VGGUnet
 modelFN = modelFns[ model_name ]
 
 m = modelFN( n_classes , input_height=input_height, input_width=input_width   )
-m.compile(loss='crossentropy',
+m.compile(loss='mean_squared_error',
       optimizer= optimizer_name ,
       metrics=['accuracy'])
 
