@@ -39,11 +39,12 @@ output_height = m.outputHeight
 output_width = m.outputWidth
 
 images = glob.glob( images_path + "*.jpg"  ) + glob.glob( images_path + "*.png"  ) +  glob.glob( images_path + "*.jpeg"  )
-images.sort(
+images.sort()
 
 colors = [  ( random.randint(0,255),random.randint(0,255),random.randint(0,255)   ) for _ in range(n_classes)  ]
 
 for imgName in images:
+
 	outName = imgName.replace( images_path ,  args.output_path )
 	X = LoadBatches.getImageArr(imgName , args.input_width  , args.input_height  )
 	pr = m.predict( np.array([X]) )[0]
