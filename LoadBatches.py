@@ -44,10 +44,7 @@ def getSegmentationArr( path , nClasses ,  width , height  ):
 		img = cv2.imread(path, 1)
 		img = cv2.resize(img, ( width , height ))
 		img = img[:, : , 0]
-        
-
-		for c in range(nClasses):
-			seg_labels[: , : , 0 ] = (img == 128 ).astype(int)
+		seg_labels[: , : , 0 ] = (img == 128 ).astype(int)
 
 	except Exception, e:
 		print e
