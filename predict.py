@@ -53,9 +53,9 @@ for imgName in images:
 	for i in range(output_width):
 		for j in range(input_height):
 			if pr[i][j] >0.5:
-				seg_img[i][j][0] += (colors[0][0]).astype('uint8')
-				seg_img[i][j][1] += (colors[0][1]).astype('uint8')
-				seg_img[i][j][2] += (colors[0][2]).astype('uint8')
+				seg_img[i][j][0] += 128
+				seg_img[i][j][1] += 128
+				seg_img[i][j][2] += 128
 
 	seg_img = cv2.resize(seg_img  , (input_width , input_height ))
 	cv2.imwrite(  outName , seg_img )
