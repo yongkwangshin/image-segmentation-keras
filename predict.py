@@ -39,7 +39,7 @@ output_height = m.outputHeight
 output_width = m.outputWidth
 
 images = glob.glob( images_path + "*.jpg"  ) + glob.glob( images_path + "*.png"  ) +  glob.glob( images_path + "*.jpeg"  )
-images.sort()
+images.sort(
 
 colors = [  ( random.randint(0,255),random.randint(0,255),random.randint(0,255)   ) for _ in range(n_classes)  ]
 
@@ -47,12 +47,12 @@ for imgName in images:
 	outName = imgName.replace( images_path ,  args.output_path )
 	X = LoadBatches.getImageArr(imgName , args.input_width  , args.input_height  )
 	pr = m.predict( np.array([X]) )[0]
-	pr = pr.reshape(( output_height ,  output_width , n_classes ) ).argmax( axis=2 )
+	pr = pr.reshape(( output_height ,  output_width , n_classes ) )
 	seg_img = np.zeros( ( output_height , output_width , 3  ) )
 	for c in range(n_classes):
-		seg_img[:,:,0] += ( (pr[:,: ] == c )*( colors[c][0] )).astype('uint8')
-		seg_img[:,:,1] += ((pr[:,: ] == c )*( colors[c][1] )).astype('uint8')
-		seg_img[:,:,2] += ((pr[:,: ] == c )*( colors[c][2] )).astype('uint8')
+		seg_img[:,:,0] += ( (pr[:,: ] > 0.5 )*( colors[c][0] )).astype('uint8')
+		seg_img[:,:,1] += ((pr[:,: ] > 0.5 )*( colors[c][1] )).astype('uint8')
+		seg_img[:,:,2] += ((pr[:,: ] > 0.5 )*( colors[c][2] )).astype('uint8')
 	seg_img = cv2.resize(seg_img  , (input_width , input_height ))
 	cv2.imwrite(  outName , seg_img )
 
