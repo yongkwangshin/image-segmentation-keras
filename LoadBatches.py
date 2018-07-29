@@ -42,9 +42,10 @@ def getSegmentationArr( path , nClasses ,  width , height  ):
 	seg_labels = np.zeros((  height , width  , nClasses ))
 	try:
 		img = cv2.imread(path, 1)
+        print np.unique( img )
 		img = cv2.resize(img, ( width , height ))
 		img = img[:, : , 0]
-        print np.unique( img )
+        
 
 		for c in range(nClasses):
 			seg_labels[: , : , c ] = (img == 128 + c).astype(int)
