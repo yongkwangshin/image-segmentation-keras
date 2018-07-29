@@ -49,7 +49,7 @@ modelFns = { 'vgg_segnet':Models.VGGSegnet.VGGSegnet , 'vgg_unet':Models.VGGUnet
 modelFN = modelFns[ model_name ]
 
 m = modelFN( n_classes , input_height=input_height, input_width=input_width   )
-m.compile(loss='sparse_categorical_crossentropy',
+m.compile(loss='categorical_crossentropy',
       optimizer= optimizer_name ,
       metrics=['accuracy'])
 
@@ -71,12 +71,12 @@ if validate:
 
 if not validate:
 	for ep in range( epochs ):
-		m.fit_generator( G , 512  , epochs=1 )
+		m.fit_generator( G , 2  , epochs=1 )
 		m.save_weights( save_weights_path + "." + str( ep ) )
 		m.save( save_weights_path + ".model." + str( ep ) )
 else:
 	for ep in range( epochs ):
-		m.fit_generator( G , 512  , validation_data=G2 , validation_steps=200 ,  epochs=1 )
+		m.fit_generator( G , 2  , validation_data=G2 , validation_steps=200 ,  epochs=1 )
 		m.save_weights( save_weights_path + "." + str( ep )  )
 		m.save( save_weights_path + ".model." + str( ep ) )
 
