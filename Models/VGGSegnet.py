@@ -87,7 +87,7 @@ def VGGSegnet( n_classes ,  input_height=416, input_width=608 , vgg_level=3):
 
 	o = (Reshape((  -1  , outputHeight*outputWidth   )))(o)
 	o = (Permute((2, 1)))(o)
-	o = (Activation('softmax'))(o)
+	o = (Activation('sigmoid'))(o)
 	model = Model( img_input , o )
 	model.outputWidth = outputWidth
 	model.outputHeight = outputHeight
