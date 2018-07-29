@@ -50,10 +50,13 @@ for imgName in images:
 	pr = m.predict( np.array([X]) )[0]
 	pr = pr.reshape(( output_height ,  output_width , n_classes ) )
 	seg_img = np.zeros( ( output_height , output_width , 3  ) )
-	for c in range(n_classes):
-		seg_img[:,:,0] += ( (pr[:,: ] > 0.5 )*( colors[c][0] )).astype('uint8')
-		seg_img[:,:,1] += ((pr[:,: ] > 0.5 )*( colors[c][1] )).astype('uint8')
-		seg_img[:,:,2] += ((pr[:,: ] > 0.5 )*( colors[c][2] )).astype('uint8')
+	for i in range(output_width):
+		for j in range(input_height):
+			if pr[i][j] >0.5:
+				seg_img[i][j][0] += (colors[0][0]).astype('uint8')
+				seg_img[i][j][1] += (colors[0][1]).astype('uint8')
+				seg_img[i][j][2] += (colors[0][2]).astype('uint8')
+
 	seg_img = cv2.resize(seg_img  , (input_width , input_height ))
 	cv2.imwrite(  outName , seg_img )
 
