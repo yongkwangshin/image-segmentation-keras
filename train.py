@@ -39,7 +39,6 @@ load_weights = args.load_weights
 
 optimizer_name = args.optimizer_name
 model_name = args.model_name
-validate = False
 
 if validate:
 	val_images_path = args.val_images
