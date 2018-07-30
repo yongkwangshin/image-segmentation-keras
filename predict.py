@@ -30,7 +30,7 @@ modelFN = modelFns[ model_name ]
 
 m = modelFN( n_classes , input_height=input_height, input_width=input_width   )
 m.load_weights(  args.save_weights_path + "." + str(  epoch_number )  )
-m.compile(loss='categorical_crossentropy',
+m.compile(loss='mean_squared_error',
       optimizer= 'adadelta' ,
       metrics=['accuracy'])
 
