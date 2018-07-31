@@ -51,7 +51,7 @@ for imgName in images:
 	pr = pr.reshape(( output_height ,  output_width , n_classes ) )
 	seg_img = np.zeros( ( output_height , output_width , 3  ) )
 	for i in range(output_width):
-		for j in range(input_height):
+		for j in range(output_height):
 			if pr[i][j] >0.5:
 				seg_img[i][j][0] += 128
 				seg_img[i][j][1] += 128
