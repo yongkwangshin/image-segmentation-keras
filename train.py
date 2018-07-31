@@ -21,7 +21,7 @@ parser.add_argument("--val_batch_size", type = int, default = 5 )
 parser.add_argument("--load_weights", type = str , default = "")
 
 parser.add_argument("--model_name", type = str , default = "")
-parser.add_argument("--optimizer_name", type = str , default = "adadelta")
+parser.add_argument("--optimizer_name", type = str , default = "adam")
 
 
 args = parser.parse_args()
