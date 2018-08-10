@@ -69,11 +69,6 @@ def VGGSegnet( n_classes ,  input_height=416, input_width=608 , vgg_level=3):
 	o = ( Conv2D( 16, (3, 3), padding='valid', data_format='channels_first'))(o)
 	o = ( BatchNormalization())(o)
 
-	o = ( UpSampling2D((2,2)  , data_format='channels_first' ) )(o)
-	o = ( ZeroPadding2D((1,1) , data_format='channels_first' ))(o)
-	o = ( Conv2D( 8 , (3, 3), padding='valid' , data_format='channels_first' ))(o)
-	o = ( BatchNormalization())(o)
-
 
 
 	o =  Conv2D( n_classes , (3, 3) , padding='same', data_format='channels_first' )( o )
