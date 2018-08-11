@@ -22,8 +22,11 @@ seg  = glob.glob( segs_path + "*.jpg"  ) + glob.glob( segs_path + "*.png"  ) +  
 seg.sort()
 	
 
-for i in range(len(img))
-	for j in range(len(seg))
+n=len(img)
+m=len(seg)
+
+for i in range(n)
+	for j in range(m)
 		if img[i] = seg[j]
 			count+=1
 	if count !=0
