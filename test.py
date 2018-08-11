@@ -11,8 +11,8 @@ parser.add_argument("--train_annotations", type = str  )
 args = parser.parse_args()
 
 
-train_images_path = args.train_images
-train_segs_path = args.train_annotations
+images_path = args.train_images
+segs_path = args.train_annotations
 
 
 
