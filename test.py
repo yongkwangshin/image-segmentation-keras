@@ -8,11 +8,13 @@ parser.add_argument("--train_images", type = str  )
 parser.add_argument("--train_annotations", type = str  )
 
 
+args = parser.parse_args()
+
 
 train_images_path = args.train_images
 train_segs_path = args.train_annotations
 
-args = parser.parse_args()
+
 
 img = glob.glob( images_path + "*.jpg"  ) + glob.glob( images_path + "*.png"  ) +  glob.glob( images_path + "*.jpeg"  )
 img.sort()	
