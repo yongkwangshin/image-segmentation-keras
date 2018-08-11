@@ -14,7 +14,7 @@ VGG_Weights_path = file_path+"/../data/vgg16_weights_th_dim_ordering_th_kernels.
 
 def VGGSegnet( n_classes ,  input_height=416, input_width=608 , vgg_level=3):
 
-	vgg_level=2
+	vgg_level=1
 	img_input = Input(shape=(3,input_height,input_width))
 
 	x = Conv2D(64, (3, 3), activation='relu', padding='same', name='block1_conv1', data_format='channels_first' )(img_input)
@@ -61,14 +61,23 @@ def VGGSegnet( n_classes ,  input_height=416, input_width=608 , vgg_level=3):
 	o = levels[ vgg_level ]
 	
 	o = ( ZeroPadding2D( (1,1) , data_format='channels_first' ))(o)
-	o = ( Conv2D(16, (3, 3), padding='valid', data_format='channels_first'))(o)
+	o = ( Conv2D(32, (3, 3), padding='valid', data_format='channels_first'))(o)
 	o = ( BatchNormalization())(o)
 
 	o = ( UpSampling2D( (2,2), data_format='channels_first'))(o)
 	o = ( ZeroPadding2D( (1,1), data_format='channels_first'))(o)
-	o = ( Conv2D( 8, (3, 3), padding='valid', data_format='channels_first'))(o)
+	o = ( Conv2D( 16, (3, 3), padding='valid', data_format='channels_first'))(o)
 	o = ( BatchNormalization())(o)
 
+	o = ( UpSampling2D((2,2)  , data_format='channels_first' ) )(o)
+	o = ( ZeroPadding2D((1,1) , data_format='channels_first' ))(o)
+	o = ( Conv2D( 8 , (3, 3), padding='valid' , data_format='channels_first' ))(o)
+	o = ( BatchNormalization())(o)
+
+	o = ( UpSampling2D((2,2)  , data_format='channels_first' ))(o)
+	o = ( ZeroPadding2D((1,1)  , data_format='channels_first' ))(o)
+	o = ( Conv2D( 4 , (3, 3), padding='valid'  , data_format='channels_first' ))(o)
+	o = ( BatchNormalization())(o)
 
 
 	o =  Conv2D( n_classes , (3, 3) , padding='same', data_format='channels_first' )( o )
