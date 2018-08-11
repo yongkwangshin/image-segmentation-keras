@@ -20,6 +20,9 @@ seg  = glob.glob( segs_path + "*.jpg"  ) + glob.glob( segs_path + "*.png"  ) +  
 seg.sort()
 	
 
-for i in range(len(img))
-	for j in range(len(seg))
-		print('i',i,'j',j)
+#for i in range(len(img))
+#	for j in range(len(seg))
+
+i=len(img)
+j=len(seg)
+print('i',i,'j',j)
