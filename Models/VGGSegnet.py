@@ -61,14 +61,23 @@ def VGGSegnet( n_classes ,  input_height=416, input_width=608 , vgg_level=3):
 	o = levels[ vgg_level ]
 	
 	o = ( ZeroPadding2D( (1,1) , data_format='channels_first' ))(o)
-	o = ( Conv2D(64, (3, 3), padding='valid', data_format='channels_first'))(o)
+	o = ( Conv2D(512, (3, 3), padding='valid', data_format='channels_first'))(o)
 	o = ( BatchNormalization())(o)
 
 	o = ( UpSampling2D( (2,2), data_format='channels_first'))(o)
 	o = ( ZeroPadding2D( (1,1), data_format='channels_first'))(o)
-	o = ( Conv2D( 32, (3, 3), padding='valid', data_format='channels_first'))(o)
+	o = ( Conv2D( 256, (3, 3), padding='valid', data_format='channels_first'))(o)
 	o = ( BatchNormalization())(o)
 
+	o = ( UpSampling2D((2,2)  , data_format='channels_first' ) )(o)
+	o = ( ZeroPadding2D((1,1) , data_format='channels_first' ))(o)
+	o = ( Conv2D( 128 , (3, 3), padding='valid' , data_format='channels_first' ))(o)
+	o = ( BatchNormalization())(o)
+
+	o = ( UpSampling2D((2,2)  , data_format='channels_first' ))(o)
+	o = ( ZeroPadding2D((1,1)  , data_format='channels_first' ))(o)
+	o = ( Conv2D( 64 , (3, 3), padding='valid'  , data_format='channels_first' ))(o)
+	o = ( BatchNormalization())(o)
 
 
 	o =  Conv2D( n_classes , (3, 3) , padding='same', data_format='channels_first' )( o )
