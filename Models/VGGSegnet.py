@@ -7,9 +7,9 @@ from keras.models import *
 from keras.layers import *
 
 
-import os
-file_path = os.path.dirname( os.path.abspath(__file__) )
-VGG_Weights_path = file_path+"/../data/vgg16_weights_th_dim_ordering_th_kernels.h5"
+# import os
+# file_path = os.path.dirname( os.path.abspath(__file__) )
+# VGG_Weights_path = file_path+"/../data/vgg16_weights_th_dim_ordering_th_kernels.h5"
 
 
 def VGGSegnet( n_classes ,  input_height=416, input_width=608 , vgg_level=3):
@@ -54,7 +54,7 @@ def VGGSegnet( n_classes ,  input_height=416, input_width=608 , vgg_level=3):
 	x = Dense( 1000 , activation='softmax', name='predictions')(x)
 
 	vgg  = Model(  img_input , x  )
-	vgg.load_weights(VGG_Weights_path)
+	# vgg.load_weights(VGG_Weights_path)
 
 	levels = [f1 , f2 , f3 , f4 , f5 ]
 
@@ -62,22 +62,22 @@ def VGGSegnet( n_classes ,  input_height=416, input_width=608 , vgg_level=3):
 	
 	o = ( ZeroPadding2D( (1,1) , data_format='channels_first' ))(o)
 	o = ( Conv2D(32, (3, 3), padding='valid', data_format='channels_first'))(o)
-	o = ( BatchNormalization())(o)
+	# o = ( BatchNormalization())(o)
 
 	o = ( UpSampling2D( (2,2), data_format='channels_first'))(o)
 	o = ( ZeroPadding2D( (1,1), data_format='channels_first'))(o)
 	o = ( Conv2D( 16, (3, 3), padding='valid', data_format='channels_first'))(o)
-	o = ( BatchNormalization())(o)
+	# o = ( BatchNormalization())(o)
 
 	o = ( UpSampling2D((2,2)  , data_format='channels_first' ) )(o)
 	o = ( ZeroPadding2D((1,1) , data_format='channels_first' ))(o)
 	o = ( Conv2D( 8 , (3, 3), padding='valid' , data_format='channels_first' ))(o)
-	o = ( BatchNormalization())(o)
+	# o = ( BatchNormalization())(o)
 
 	o = ( UpSampling2D((2,2)  , data_format='channels_first' ))(o)
 	o = ( ZeroPadding2D((1,1)  , data_format='channels_first' ))(o)
 	o = ( Conv2D( 4 , (3, 3), padding='valid'  , data_format='channels_first' ))(o)
-	o = ( BatchNormalization())(o)
+	# o = ( BatchNormalization())(o)
 
 
 	o =  Conv2D( n_classes , (3, 3) , padding='same', data_format='channels_first' )( o )
