@@ -16,8 +16,8 @@ parser.add_argument("--val_images", type = str , default = "")
 parser.add_argument("--val_annotations", type = str , default = "")
 
 parser.add_argument("--epochs", type = int, default = 1 )
-parser.add_argument("--batch_size", type = int, default = 3 )
-parser.add_argument("--val_batch_size", type = int, default = 3 )
+parser.add_argument("--batch_size", type = int, default = 5 )
+parser.add_argument("--val_batch_size", type = int, default = 5 )
 parser.add_argument("--load_weights", type = str , default = "")
 
 parser.add_argument("--model_name", type = str , default = "")
@@ -71,12 +71,12 @@ if validate:
 
 if not validate:
 	for ep in range( epochs ):
-		m.fit_generator( G , 512  , epochs=5 )
+		m.fit_generator( G , 512  , epochs=50 )
 		m.save_weights( save_weights_path + "." + str( ep ) )
 		m.save( save_weights_path + ".model." + str( ep ) )
 else:
 	for ep in range( epochs ):
-		m.fit_generator( G , 512  , validation_data=G2 , validation_steps=200 ,  epochs=5 )
+		m.fit_generator( G , 512  , validation_data=G2 , validation_steps=200 ,  epochs=50 )
 		m.save_weights( save_weights_path + "." + str( ep )  )
 		m.save( save_weights_path + ".model." + str( ep ) )
 
