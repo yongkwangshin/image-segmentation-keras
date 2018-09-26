@@ -3,8 +3,8 @@
 
 
 
-from tf.keras.models import *
-from tf.keras.layers import *
+from keras.models import *
+from keras.layers import *
 
 
 import os
