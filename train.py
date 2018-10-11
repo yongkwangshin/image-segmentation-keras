@@ -52,7 +52,7 @@ m = modelFN( n_classes , input_height=input_height, input_width=input_width   )
 m.compile(loss='mean_squared_error',
       optimizer= optimizer_name ,
       metrics=['accuracy'])
-
+print('test')
 
 if len( load_weights ) > 0:
 	m.load_weights(load_weights)
