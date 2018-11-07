@@ -21,7 +21,7 @@ parser.add_argument("--val_batch_size", type = int, default = 5 )
 parser.add_argument("--load_weights", type = str , default = "")
 
 parser.add_argument("--model_name", type = str , default = "")
-parser.add_argument("--optimizer_name", type = str , default = "adam")
+parser.add_argument("--optimizer_name", type = str , default = "rmsprop")
 
 
 args = parser.parse_args()
@@ -49,7 +49,7 @@ modelFns = { 'vgg_segnet':Models.VGGSegnet.VGGSegnet , 'vgg_unet':Models.VGGUnet
 modelFN = modelFns[ model_name ]
 
 m = modelFN( n_classes , input_height=input_height, input_width=input_width   )
-m.compile(loss='mean_squared_error',
+m.compile(loss='binary_crossentropy',
       optimizer= optimizer_name ,
       metrics=['accuracy'])
 
