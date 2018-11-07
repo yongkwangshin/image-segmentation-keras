@@ -52,7 +52,7 @@ for imgName in images:
 	seg_img = np.zeros( ( output_height , output_width , 3  ) )
 	for i in range(output_width):
 		for j in range(output_height):
-			if pr[i][j] >0.5:
+			if pr[i][j] >0.7:
 				seg_img[i][j][0] += 255
 				seg_img[i][j][1] += 255
 				seg_img[i][j][2] += 255
