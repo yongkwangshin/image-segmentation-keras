@@ -49,7 +49,7 @@ if validate:
 import tensorflow as tf
 import os
 file_path = os.path.dirname( os.path.abspath(__file__) )
-VGG_Weights_path = file_path+"/../data/vgg16_weights_th_dim_ordering_th_kernels.h5"
+VGG_Weights_path = file_path+"/data/vgg16_weights_th_dim_ordering_th_kernels.h5"
 
 def VGGSegnet( n_classes ,  input_height=416, input_width=608 , vgg_level=3):
 
