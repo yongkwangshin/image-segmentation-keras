@@ -165,4 +165,4 @@ else:
 		m.save_weights( save_weights_path + "." + str( ep )  )
 		m.save( save_weights_path + ".model." + str( ep ) )
 
-m.save(save_weights_path+"testmodel.h5")
+m.save("weights/ex1/testmodel/testmodel.h5")
