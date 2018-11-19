@@ -1,6 +1,6 @@
 import argparse
 import Models , LoadBatches
-
+import tensorflow as tf
 
 
 parser = argparse.ArgumentParser()
@@ -79,5 +79,8 @@ else:
 		m.fit_generator( G , 100  , validation_data=G2 , validation_steps=50 ,  epochs=30 )
 		#m.save_weights( save_weights_path + "." + str( ep )  )
 		m.save( save_weights_path + ".model." + str( ep ) )
+		model_json = tf.keras.model.to_json()
+		with open("model.json", "w") as json_file : 
+			json_file.write(model_json)
 
 
