@@ -58,27 +58,27 @@ def VGGSegnet( n_classes ,  input_height=416, input_width=608 , vgg_level=3):
 
 	o = levels[ vgg_level ]
 	
-	o = ( tf.keras.layers.ZeroPadding2D( (1,1) , data_format='channels_first' ))(o)
-	o = ( tf.keras.layers.Conv2D(32, (3, 3), padding='valid', data_format='channels_first'))(o)
+	o = ( tf.keras.layers.ZeroPadding2D( (1,1) , name='zp1', data_format='channels_first' ))(o)
+	o = ( tf.keras.layers.Conv2D(32, (3, 3), name='conv1', padding='valid', data_format='channels_first'))(o)
 	o = ( tf.keras.layers.BatchNormalization())(o)
 
-	o = ( tf.keras.layers.UpSampling2D( (2,2), data_format='channels_first'))(o)
-	o = ( tf.keras.layers.ZeroPadding2D( (1,1), data_format='channels_first'))(o)
-	o = ( tf.keras.layers.Conv2D( 16, (3, 3), padding='valid', data_format='channels_first'))(o)
+	o = ( tf.keras.layers.UpSampling2D( (2,2), name='us2', data_format='channels_first'))(o)
+	o = ( tf.keras.layers.ZeroPadding2D( (1,1), name='zp2', data_format='channels_first'))(o)
+	o = ( tf.keras.layers.Conv2D( 16, (3, 3), name='conv2', padding='valid', data_format='channels_first'))(o)
 	o = ( tf.keras.layers.BatchNormalization())(o)
 
-	o = ( tf.keras.layers.UpSampling2D((2,2)  , data_format='channels_first' ) )(o)
-	o = ( tf.keras.layers.ZeroPadding2D((1,1) , data_format='channels_first' ))(o)
-	o = ( tf.keras.layers.Conv2D( 8 , (3, 3), padding='valid' , data_format='channels_first' ))(o)
+	o = ( tf.keras.layers.UpSampling2D((2,2)  , name='us3', data_format='channels_first' ) )(o)
+	o = ( tf.keras.layers.ZeroPadding2D((1,1) , name='zp3', data_format='channels_first' ))(o)
+	o = ( tf.keras.layers.Conv2D( 8 , (3, 3), name='conv3', padding='valid' , data_format='channels_first' ))(o)
 	o = ( tf.keras.layers.BatchNormalization())(o)
 
-	o = ( tf.keras.layers.UpSampling2D((2,2)  , data_format='channels_first' ))(o)
-	o = ( tf.keras.layers.ZeroPadding2D((1,1)  , data_format='channels_first' ))(o)
-	o = ( tf.keras.layers.Conv2D( 4 , (3, 3), padding='valid'  , data_format='channels_first' ))(o)
+	o = ( tf.keras.layers.UpSampling2D((2,2)  , name='us4', data_format='channels_first' ))(o)
+	o = ( tf.keras.layers.ZeroPadding2D((1,1)  , name='zp4', data_format='channels_first' ))(o)
+	o = ( tf.keras.layers.Conv2D( 4 , (3, 3), name='conv4', padding='valid'  , data_format='channels_first' ))(o)
 	o = ( tf.keras.layers.BatchNormalization())(o)
 
 
-	o =  tf.keras.layers.Conv2D( n_classes , (3, 3) , padding='same', data_format='channels_first' )( o )
+	o =  tf.keras.layers.Conv2D( n_classes , (3, 3) , name='conv5', padding='same', data_format='channels_first' )( o )
 	o_shape = tf.keras.Model(img_input , o ).output_shape
 	outputHeight = o_shape[2]
 	outputWidth = o_shape[3]
