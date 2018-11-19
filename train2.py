@@ -164,5 +164,4 @@ else:
 		m.fit_generator( G , 100  , validation_data=G2 , validation_steps=50 ,  epochs=5 )
 		m.save_weights( save_weights_path + "." + str( ep )  )
 		m.save( save_weights_path + ".model." + str( ep ) )
-
-m.save("weights/ex1/testmodel/testmodel.h5")
+		m.save("weights/ex1/testmodel/testmodel.h5")
