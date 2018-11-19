@@ -79,6 +79,7 @@ else:
 		m.fit_generator( G , 30  , validation_data=G2 , validation_steps=50 ,  epochs=5 )
 		#m.save_weights( save_weights_path + "." + str( ep )  )
 		m.save( save_weights_path + ".model." + str( ep ) )
+		tf.keras.models.save_model(model="test")
 		model_json = tf.keras.models.to_json()
 		with open("model.json", "w") as json_file : 
 			json_file.write(model_json)
