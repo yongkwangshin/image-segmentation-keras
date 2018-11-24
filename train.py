@@ -81,7 +81,7 @@ else:
 		# m.save( save_weights_path + ".model." + str( ep ) )
 		# tf.keras.models.save_model(m,save_weights_path + ".model." + str( ep ))
 		# tf.keras.models.save_model(m,filepath="./testz")
-		tf.keras.models.Model.save(save_weights_path + ".model." + str( ep ))
+		tf.keras.models.Model.save(m,save_weights_path + ".model." + str( ep ))
 		# model_json = tf.keras.models.to_json()
 		# with open("model.json", "w") as json_file : 
 		# json_file.write(model_json)
