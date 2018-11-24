@@ -50,7 +50,7 @@ modelFN = modelFns[ model_name ]
 
 m = Models.VGGSegnet.VGGSegnet( n_classes , input_height=input_height, input_width=input_width   )
 m.compile(loss='binary_crossentropy',
-      optimizer= optimizer_name ,
+      optimizer= tf.train.AdamOptimizer ,
       metrics=['accuracy'])
 
 
