@@ -48,7 +48,7 @@ if validate:
 modelFns = { 'vgg_segnet':Models.VGGSegnet.VGGSegnet , 'vgg_unet':Models.VGGUnet.VGGUnet , 'vgg_unet2':Models.VGGUnet.VGGUnet2 , 'fcn8':Models.FCN8.FCN8 , 'fcn32':Models.FCN32.FCN32  }
 modelFN = modelFns[ model_name ]
 
-m = modelFN( n_classes , input_height=input_height, input_width=input_width   )
+m = Models.VGGSegnet.VGGSegnet( n_classes , input_height=input_height, input_width=input_width   )
 m.compile(loss='binary_crossentropy',
       optimizer= optimizer_name ,
       metrics=['accuracy'])
