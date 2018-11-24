@@ -2,7 +2,8 @@ import argparse
 import Models , LoadBatches
 #import tensorflow as tf
 #from tensorflow.keras.models import load_model
-from keras.models import load_model
+#from keras.models import load_model
+import tensorflow.keras.models.load_model
 import glob
 import cv2
 import numpy as np
